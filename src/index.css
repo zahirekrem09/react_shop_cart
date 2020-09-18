@@ -16,9 +16,12 @@ body,
     "header"
     "main"
     "footer";
-  grid-template-rows:5rem 1fr 5rem ;
+  grid-template-rows: 5rem 1fr 5rem;
   grid-template-columns: 1fr;
   height: 100%;
+}
+a {
+  text-decoration: none;
 }
 a:hover {
   color: #ff8000;
@@ -39,6 +42,148 @@ header a {
 }
 main {
   grid-area: main;
+}
+.content {
+  display: flex;
+  flex-wrap: wrap;
+}
+.content .main {
+  flex: 3 60rem;
+}
+
+.content .sidebar {
+  flex: 1 20rem;
+}
+
+/* Products Comp. */
+.products {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+}
+.products li {
+
+  padding: 1rem;
+  flex:1 1 1 30rem;
+  /* height: 47rem; */
+}
+
+.products .product {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.products .product img {
+  max-width: 37rem;
+  max-height: 37rem;
+}
+
+.products .product-price {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.products .product-price div,
+.product-price button {
+  text-align: center;
+}
+.btn {
+  padding:1rem ;
+  border: .1rem #c0c0c0 solid;
+  background-color: #f0f0f0;
+  cursor: pointer;
+}
+
+.btn:hover {
+ 
+  border: .1rem #808080 solid;
+
+  
+}
+
+.btn-primary {
+  background-color: #ffc00f
+}
+
+/* Filter */
+.filter {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+  margin: 1rem;
+  border-bottom: 0.1rem #c0c0c0 solid;
+}
+.filter div {
+  flex: 1;
+}
+
+/* Index.css */
+.cart {
+  padding: 1rem;
+  margin: 1rem;
+  display: flex;
+}
+.cart-header {
+  border-bottom: 0.1rem #c0c0c0 solid;
+}
+.cart-items {
+  padding: 0;
+  width: 100%;
+  list-style-type: none;
+}
+.cart-items img {
+  width: 5rem;
+}
+.cart-items li {
+  display: flex;
+}
+.cart-items li div {
+  padding: 0.5rem;
+}
+.cart-items li div:last-child {
+  flex: 1;
+}
+.right {
+  text-align: right;
+}
+.total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+.total > div {
+  font-size: 2rem;
+}
+.total > div,
+.total > button {
+  flex: 1;
+}
+/* Checkout form */
+form {
+  width: 100%;
+}
+.form-container {
+  width: 100%;
+  padding: 0;
+  list-style-type: none;
+}
+.form-container li {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+}
+input {
+  padding: 1rem;
+  border: 0.1rem #c0c0c0 solid;
 }
 
 footer {
