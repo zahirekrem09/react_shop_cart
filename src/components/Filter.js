@@ -1,22 +1,40 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import { filterProducts, sortProducts } from "../actions/productActions";
 
-export default class Filter extends Component {
+class Filter extends Component {
   render() {
-    return (
+    return !this.props.filteredProducts ? (
+      <div>Loading...</div>
+    ) : (
       <div className="filter">
-        <div className="filter-result">Products {this.props.count} </div>
+        <div className="filter-result">
+          {this.props.filteredProducts.length} Products
+        </div>
         <div className="filter-sort">
-         
-          Order {" "}
-          <select value={this.props.sort} onChange={this.props.sortProducts}>
+          Order{" "}
+          <select
+            value={this.props.sort}
+            onChange={(e) =>
+              this.props.sortProducts(
+                this.props.filteredProducts,
+                e.target.value
+              )
+            }
+          >
             <option value="latest">Latest</option>
             <option value="lowest">Lowest</option>
             <option value="highest">Highest</option>
           </select>
         </div>
         <div className="filter-size">
-          filter {" "}
-          <select value={this.props.size} onChange={this.props.filterProducts}>
+          Filter{" "}
+          <select
+            value={this.props.size}
+            onChange={(e) =>
+              this.props.filterProducts(this.props.products, e.target.value)
+            }
+          >
             <option value="">ALL</option>
             <option value="XS">XS</option>
             <option value="S">S</option>
@@ -30,3 +48,15 @@ export default class Filter extends Component {
     );
   }
 }
+export default connect(
+  (state) => ({
+    size: state.products.size,
+    sort: state.products.sort,
+    products: state.products.items,
+    filteredProducts: state.products.filteredItems,
+  }),
+  {
+    filterProducts,
+    sortProducts,
+  }
+)(Filter);

@@ -1,3 +1,7 @@
+
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
+
+
 html {
   font-size: 16px;
   box-sizing: border-box;
@@ -7,7 +11,7 @@ body,
 #root {
   height: 100vh;
   margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Montserrat, Helvetica, Arial, sans-serif;
 }
 
 .grid-container {
@@ -208,8 +212,49 @@ input {
   right: 1rem;
   top: 2.5rem;
   z-index: 1000;
+
+
 }
 
+
+/* Order Details */
+
+.order-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+.order-details li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.order-details li div {
+  padding: 10px;
+}
+.order-details .items {
+  text-align: right;
+  padding: 0;
+}
+.success-message {
+  color: green;
+}
+/* Orders */
+.orders {
+  width: 100%;
+  padding: 10px;
+}
+tbody > tr:nth-child(odd) {
+  background-color: #f0f0f0;
+}
+td {
+  padding: 5px;
+}
+th {
+  text-align: left;
+}
 footer {
   grid-area: footer;
   background-color: #203040;

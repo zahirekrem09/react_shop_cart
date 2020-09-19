@@ -1,10 +1,12 @@
 import React, { Component } from "react";
-import formatCurrency from "../unil";
+import formatCurrency from "../util";
 import Fade from "react-reveal/Fade";
 import Modal from "react-modal";
 import Zoom from "react-reveal/Zoom";
 import { connect } from "react-redux";
 import { fetchProducts } from "../actions/productActions";
+import { addToCart } from "../actions/cartActions";
+
 class Products extends Component {
   constructor(props) {
     super(props);
@@ -26,11 +28,10 @@ class Products extends Component {
     return (
       <div>
         <Fade bottom cascade>
-          {
-            !this.props.products ? (
-              <div>Loading....</div>
-            ):(
-              <ul className="products">
+          {!this.props.products ? (
+            <div>Loading...</div>
+          ) : (
+            <ul className="products">
               {this.props.products.map((product) => (
                 <li key={product._id}>
                   <div className="product">
@@ -38,7 +39,7 @@ class Products extends Component {
                       href={"#" + product._id}
                       onClick={() => this.openModal(product)}
                     >
-                      <img src={product.image} alt={product.title} />
+                      <img src={product.image} alt={product.title}></img>
                       <p>{product.title}</p>
                     </a>
                     <div className="product-price">
@@ -47,18 +48,15 @@ class Products extends Component {
                         onClick={() => this.props.addToCart(product)}
                         className="btn btn-primary"
                       >
-                        Add to Cart
+                        Add To Cart
                       </button>
                     </div>
                   </div>
                 </li>
               ))}
             </ul>
-            )
-          }
-         
+          )}
         </Fade>
-
         {product && (
           <Modal isOpen={true} onRequestClose={this.closeModal}>
             <Zoom>
@@ -77,7 +75,7 @@ class Products extends Component {
                     {product.availableSizes.map((x) => (
                       <span>
                         {" "}
-                        <button className="button">{x}</button>
+                        <button className="btn btn-primary">{x}</button>
                       </span>
                     ))}
                   </p>
@@ -102,11 +100,10 @@ class Products extends Component {
     );
   }
 }
-
-
 export default connect(
-  (state) => ({ products: state.products.items }),
+  (state) => ({ products: state.products.filteredItems }),
   {
     fetchProducts,
+    addToCart,
   }
 )(Products);
